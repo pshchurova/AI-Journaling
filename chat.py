@@ -1,5 +1,6 @@
 import openai
 from time import time, sleep
+import textwrap
 
 
 def open_file(filepath):
@@ -15,6 +16,7 @@ def chatbot(messages, model="gpt-4", temperature=0):
             response = openai.ChatCompletion.create(model=model, messages=messages, temperature=temperature)
             text = response['choices'][0]['message']['content']
             
+            ###    trim message object
             if response['usage']['total_tokens'] >= 7800:
                 a = messages.pop(1)
             
@@ -43,10 +45,12 @@ if __name__ == '__main__':
     
     while True:
         # get user input
-        text = input('\n\nUSER: ')
+        text = input('\n\n\n\nUSER: ')
         conversation.append({'role': 'user', 'content': text})
 
         # generate a response
         response = chatbot(conversation)
         conversation.append({'role': 'assistant', 'content': response})
-        print('\n\nCHATBOT: %s' % response)
+        print('\n\n\n\nCHATBOT:')
+        formatted_text = textwrap.fill(response, width=100, initial_indent='    ', subsequent_indent='    ')
+        print(formatted_text)
