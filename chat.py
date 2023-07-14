@@ -1,6 +1,13 @@
 import openai
 from time import time, sleep
+from halo import Halo
 import textwrap
+
+# Use readline for better input() editing, if available
+try:
+  import readline
+except ImportError:
+  pass
 
 
 def open_file(filepath):
@@ -13,10 +20,14 @@ def chatbot(messages, model="gpt-4", temperature=0):
     retry = 0
     while True:
         try:
+            spinner = Halo(text='AI', spinner='dots')
+            spinner.start()
+            
             response = openai.ChatCompletion.create(model=model, messages=messages, temperature=temperature)
             text = response['choices'][0]['message']['content']
+
+            spinner.stop()
             
-            ###    trim message object
             if response['usage']['total_tokens'] >= 7800:
                 a = messages.pop(1)
             
@@ -39,7 +50,7 @@ def chatbot(messages, model="gpt-4", temperature=0):
 
 if __name__ == '__main__':
     # instantiate chatbot
-    openai.api_key = open_file('key_openai.txt')
+    openai.api_key = open_file('key_openai.txt').strip()
     conversation = list()
     conversation.append({'role': 'system', 'content': open_file('system_reflective_journaling.txt')})
     
