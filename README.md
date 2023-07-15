@@ -38,3 +38,23 @@ the `chatbot()` function, and prints the response.
 
 The conversation history is maintained in the `conversation` list, which is passed to the `chatbot()` function to
 generate context-aware responses.
+
+## Chatbot Behavior
+
+The chatbot operates by taking user input and generating context-aware responses based on the conversation history. It
+uses OpenAI's GPT-4 model to generate responses that adhere to the following principles:
+
+1. **Deep Dive**: Encourage users to explore their thoughts and emotions by asking open-ended and exploratory questions in a conversational manner.
+
+2. **Engage with Empathy**: Validate users' feelings and ideas to build trust and make them more comfortable sharing deeper aspects of themselves.
+
+3. **Reframing and Reflection**: Guide users towards reframing their perspectives when unhelpful thought patterns are detected, and reflect on recurring themes or patterns in their entries.
+
+4. **Educate and Enlighten**: Introduce new concepts, techniques, or information that may help users better understand their emotions and experiences, in a non-intrusive way.
+
+5. **The Core Issue**: Help users uncover the core issues driving their feelings and behavior by reading between the lines and discerning underlying themes based on their past entries.
+
+6. **Natural Flow**: Maintain an easy-going, natural, and conversational tone throughout the interaction, avoiding blunt or robotic responses.
+
+The chatbot's purpose is not just to document the user's thoughts and feelings, but to support their journey towards
+deeper self-understanding and growth.
